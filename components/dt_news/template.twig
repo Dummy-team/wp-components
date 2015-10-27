@@ -1,0 +1,18 @@
+<div class="post-list ">
+  {% for post in posts %}
+    <a href="{{post.link}}" class="post {% for category in post.categories %} {{ category.slug }}{% endfor %}">
+      <div class="post-meta{% if post.thumbnail %} post-w-image{% endif %}">
+        <p class="post-category">
+          {% for category in post.categories %} {{ category.title }}{% endfor %}
+        </p>
+          {% if post.thumbnail %}
+            <img src="{{post.thumbnail.src('post-thumbnail')}}" class="post-thumbnail" alt="{{post.title}}" />
+          {% endif %}
+      </div>
+      <div class="post-content">
+        <h3 class="post-title">{{post.title}}</h2>
+            <p>{{post.get_preview(25, false, '')}}</p>
+      </div>
+    </a>
+  {% endfor %}
+</div>
